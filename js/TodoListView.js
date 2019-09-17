@@ -47,7 +47,7 @@ class TodoListView {
      */
     buildListItem(listItem, listItemIndex, listToLoad) {
         let newItemDiv = document.createElement(TodoHTML.DIV);
-        newItemDiv.setAttribute(TodoHTML.ID, TodoGUIId.ITEM_CARD_ + listItemIndex);
+        newItemDiv.setAttribute(TodoHTML.ID, TodoGUIId.TODO_ITEM + '_' + listItemIndex);
         newItemDiv.setAttribute(TodoHTML.CLASS, TodoGUIClass.LIST_ITEM_CARD);
         
         
@@ -98,6 +98,10 @@ class TodoListView {
         let buttonDeleteDiv =  document.createElement(TodoHTML.BUTTON);
         buttonDeleteDiv.setAttribute(TodoHTML.CLASS, TodoGUIClass.LIST_ITEM_CARD_DELETE);
         buttonDeleteDiv.innerHTML = "<img src = './images/icons/RemoveItem.png' alt = '' />";
+
+        this.setupCallback(buttonUpDiv, TodoHTML.ONCLICK, TodoCallback.PROCESS_MOVE_ITEM_UP, [listItemIndex]);
+        this.setupCallback(buttonDownDiv, TodoHTML.ONCLICK, TodoCallback.PROCESS_MOVE_ITEM_DOWN, [listItemIndex]);
+        this.setupCallback(buttonDeleteDiv, TodoHTML.ONCLICK, TodoCallback.PROCESS_DELETE_ITEM, [listItemIndex]);
 
         buttonDiv.appendChild(buttonUpDiv);
         buttonDiv.appendChild(buttonDownDiv);

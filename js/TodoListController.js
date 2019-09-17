@@ -246,9 +246,12 @@ class TodoListController {
 
         
     }
-    processMoveItemUp(){}
-    processMoveItemDown(){}
-    processMoveDeleteItem(){}
+    processMoveItemUp(indexItem) {}
+    processMoveItemDown(indexItem) {}
+
+    processDeleteItem(indexItem) {
+        console.log(indexItem);
+    }
 
 
     
