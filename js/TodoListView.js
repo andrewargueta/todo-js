@@ -47,7 +47,7 @@ class TodoListView {
      */
     buildListItem(listItem, listItemIndex, listToLoad) {
         let newItemDiv = document.createElement(TodoHTML.DIV);
-        newItemDiv.setAttribute(TodoHTML.ID, TodoGUIId.TODO_ITEM + '_' + listItemIndex);
+        newItemDiv.setAttribute(TodoHTML.ID, TodoGUIId.ITEM_CARD_ + listItemIndex);
         newItemDiv.setAttribute(TodoHTML.CLASS, TodoGUIClass.LIST_ITEM_CARD);
         
         
