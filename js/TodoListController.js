@@ -83,9 +83,20 @@ class TodoListController {
      */
 
     processDeleteList(){
-        // SHOW DIALOG
-        console.log('WORKING');
+       let dialog = document.getElementById(TodoGUIId.MODAL_YES_NO_DIALOG);
+       window.todo.model.view.showDialog();
 
+       let yesButton = document.getElementById(TodoGUIId.YES_BUTTON);
+       let noButton = document.getElementById(TodoGUIId.NO_BUTTON);
+       yesButton.onclick= function(){
+           let listBeingDeleted =  window.todo.model.listToEdit;
+           window.todo.model.removeList(listBeingDeleted);
+           window.todo.model.goHome();
+           window.todo.model.view.hideDialog();
+       }
+       noButton.onclick = function(){
+        window.todo.model.view.hideDialog();
+       }
         
         
     }

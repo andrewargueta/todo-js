@@ -366,6 +366,8 @@ class TodoListView {
     hideDialog() {
         let dialog = document.getElementById(TodoGUIId.MODAL_YES_NO_DIALOG);
         dialog.classList.remove(TodoGUIClass.IS_VISIBLE);
+        if(dialog.style.display == 'block')
+            dialog.style.display = '';    
     }
 
     /**
@@ -373,8 +375,13 @@ class TodoListView {
      */
     showDialog() {
         let dialog = document.getElementById(TodoGUIId.MODAL_YES_NO_DIALOG);
-        dialog.classList.add(TodoGUIClass.IS_VISIBLE);
-    }
+        dialog.classList.add(TodoGUIClass.IS_VISIBLE);          
+        if(dialog.style.display == 'none' || dialog.style.display == '')
+            dialog.style.display = 'block';    
+        let yesButton = document.getElementById(TodoGUIId.YES_BUTTON); 
+        }
+        
+    
 
     /**
      * This function can be used to disable on of the three buttons for each

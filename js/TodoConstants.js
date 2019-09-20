@@ -78,6 +78,8 @@ const TodoGUIId = {
     DELETE: "_delete",
     //DIALOG POP UP
     MODAL_YES_NO_DIALOG: 'modal_yes_no_dialog',
+    YES_BUTTON: "button_yes",
+    NO_BUTTON: "button_no",
 };
 
 /**
@@ -88,7 +90,7 @@ const TodoGUIId = {
 const TodoGUIClass = {
     // HOME SCREEN CLASSES
     HOME_LIST_LINK: "home_list_link",
-
+    IS_VISIBLE: "visible",
     // LIST SCREEN CLASSES
     LIST_ITEM_CARD: "list_item_card",
     LIST_ITEM_ADD_CARD: "list_item_add_card",
