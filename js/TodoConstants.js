@@ -72,7 +72,10 @@ const TodoGUIId = {
     ITEM_COMPLETED_CHECKBOX: "item_completed_checkbox",
     ITEM_FORM_CANCEL_BUTTON:"item_form_cancel_button",
     ITEM_FORM_SUBMIT_BUTTON:"item_form_submit_button",
-   
+    ITEM_CARD_: "item_card_",
+    UP: "_up",
+    DOWN: "_down",
+    DELETE: "_delete",
     //DIALOG POP UP
     MODAL_YES_NO_DIALOG: 'modal_yes_no_dialog',
 };
@@ -102,7 +105,9 @@ const TodoGUIClass = {
     LIST_ITEM_CARD_DOWN: "list_item_card_down",
     LIST_ITEM_CARD_DELETE: "list_item_card_delete",
     LIST_ITEM_CARD_BUTTON:'list_item_card_button',
-    LIST_ITEM_CARD_TOOLBAR: "list_item_card_toolbar"
+    LIST_ITEM_CARD_TOOLBAR: "list_item_card_toolbar",
+    DISABLED: "disabled",
+    
 };
 
 /**

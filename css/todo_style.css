@@ -137,3 +137,9 @@ body {
 .list_item_card_not_completed {
     color: red;
 }
+.list_item_card_up,.list_item_card_down, .list_item_card_delete{
+    background-color: var(--swatch-accent);
+}
+button:disabled, button[disabled]{
+    background-color: gray;
+}

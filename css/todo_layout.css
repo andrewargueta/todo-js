@@ -130,9 +130,10 @@ body {
 }
 .list_item_card_up,.list_item_card_down, .list_item_card_delete{
     background-color: var(--swatch-accent);
-    
 }
-
+button:disabled, button[disabled]{
+    background-color: gray;
+}
 /* ITEM SCREEN CONTROLS */
 #item_heading {}
 #item_form_container {
@@ -160,6 +161,9 @@ body {
     font-size: 14pt;
 }
 
+#disabled{
+    background-color: gray;
+}
 
 /* ITEM SCREEN CLASSES */
 .item_prompt {

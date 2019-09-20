@@ -246,9 +246,27 @@ class TodoListController {
 
         
     }
-    processMoveItemUp(){}
-    processMoveItemDown(){}
-    processMoveDeleteItem(){}
+    processMoveItemUp(listName, itemIndex){
+        let listBeingEdited = window.todo.model.loadList(listName);
+        let tempItem = listBeingEdited.items[itemIndex-1];
+        listBeingEdited.items[itemIndex-1] = listBeingEdited.items[itemIndex];
+        listBeingEdited.items[itemIndex] = tempItem;
+        todo.view.loadItems(listBeingEdited);
+
+    }
+    processMoveItemDown(listName, itemIndex){
+        let listBeingEdited = window.todo.model.loadList(listName);
+        let tempItem = listBeingEdited.items[itemIndex+1];
+        listBeingEdited.items[itemIndex+1] = listBeingEdited.items[itemIndex];
+        listBeingEdited.items[itemIndex] = tempItem;
+        todo.view.loadItems(listBeingEdited);
+    }
+
+    processDeleteItem(listName, itemIndex){
+        let listBeingEdited = window.todo.model.loadList(listName);
+        listBeingEdited.removeItem(listBeingEdited.getItemAtIndex(itemIndex));
+        todo.view.loadItems(listBeingEdited);
+    }
 
 
     

@@ -84,24 +84,43 @@ class TodoListView {
         /**
          * BUTTONS MAYBE GO HERE?????
          */
+
+        itemArgs = [listToLoad.getName(),listItemIndex];
         let buttonDiv = document.createElement(TodoHTML.DIV);
         buttonDiv.setAttribute(TodoHTML.CLASS, TodoGUIClass.LIST_ITEM_CARD_TOOLBAR);
         
         let buttonUpDiv =  document.createElement(TodoHTML.BUTTON);
+        buttonUpDiv.setAttribute(TodoHTML.ID, TodoGUIId.ITEM_CARD_ + listItemIndex + TodoGUIId.UP);
         buttonUpDiv.setAttribute(TodoHTML.CLASS, TodoGUIClass.LIST_ITEM_CARD_UP);
+        this.setupCallback(buttonUpDiv, TodoHTML.ONCLICK, TodoCallback.PROCESS_MOVE_ITEM_UP, itemArgs);
         buttonUpDiv.innerHTML = "<img src = './images/icons/MoveUp.png' alt = '' />";
-
+        
+        
         let buttonDownDiv =  document.createElement(TodoHTML.BUTTON);
+        debugger;
         buttonDownDiv.setAttribute(TodoHTML.CLASS, TodoGUIClass.LIST_ITEM_CARD_DOWN);
+        buttonDownDiv.setAttribute(TodoHTML.ID, TodoGUIId.ITEM_CARD_ + listItemIndex + TodoGUIId.DOWN);
+        this.setupCallback(buttonDownDiv, TodoHTML.ONCLICK, TodoCallback.PROCESS_MOVE_ITEM_DOWN, itemArgs);
         buttonDownDiv.innerHTML = "<img src = './images/icons/MoveDown.png' alt = '' />";
 
         let buttonDeleteDiv =  document.createElement(TodoHTML.BUTTON);
+        buttonDeleteDiv.setAttribute(TodoHTML.ID, TodoGUIId.ITEM_CARD_ + listItemIndex + TodoGUIId.DELETE);
         buttonDeleteDiv.setAttribute(TodoHTML.CLASS, TodoGUIClass.LIST_ITEM_CARD_DELETE);
+        this.setupCallback(buttonDeleteDiv, TodoHTML.ONCLICK, TodoCallback.PROCESS_DELETE_ITEM, itemArgs);
         buttonDeleteDiv.innerHTML = "<img src = './images/icons/RemoveItem.png' alt = '' />";
+        
 
+        buttonUpDiv.addEventListener('click', event => event.stopPropagation());
+        buttonDownDiv.addEventListener('click', event => event.stopPropagation());
+        buttonDeleteDiv.addEventListener('click', event => event.stopPropagation());
+
+        
         buttonDiv.appendChild(buttonUpDiv);
         buttonDiv.appendChild(buttonDownDiv);
         buttonDiv.appendChild(buttonDeleteDiv);
+
+
+
 
         // THESE SPANS GO IN THE DETAILS DIV
         newItemDiv.appendChild(descriptionDiv);
@@ -110,7 +129,7 @@ class TodoListView {
         newItemDiv.appendChild(completedDiv);
         newItemDiv.appendChild(buttonDiv);
         
-
+        
 
         return newItemDiv;
     }
@@ -191,8 +210,6 @@ class TodoListView {
     loadItems(listToLoad) {
         let listItemsDiv = document.getElementById(TodoGUIId.LIST_ITEMS_CONTAINER);
         this.removeAllChildren(listItemsDiv);
-
-        let index = 0;
         let listItemsHeaderDiv = this.buildListItemsHeader();
         listItemsDiv.appendChild(listItemsHeaderDiv);
 
@@ -201,10 +218,27 @@ class TodoListView {
             let item = listToLoad.items[i];   
             let itemCard = this.buildListItem(item, i, listToLoad);
             listItemsDiv.appendChild(itemCard);
-            index = i;
         }
-
         listItemsDiv.appendChild(this.buildListItemFooter(listToLoad));
+        
+        for(let i = 0; i < listToLoad.items.length; i++){
+            if(listToLoad.items.length === 1){
+                this.disableButton(i,TodoGUIId.UP);
+                this.disableButton(i,TodoGUIId.DOWN);
+            }
+            else if(i === 0){
+                this.disableButton(i,TodoGUIId.UP);
+                this.enableButton(i, TodoGUIId.DOWN);
+            }
+            else if( i === listToLoad.items.length - 1){
+                this.disableButton(i, TodoGUIId.DOWN)
+                this.enableButton(i, TodoGUIId.UP);
+            }
+            else{
+                this.enableButton(i, TodoGUIId.UP);
+                this.enableButton(i, TodoGUIId.DOWN);
+            }
+        }
     }
 
     /**
@@ -355,7 +389,8 @@ class TodoListView {
     disableButton(itemIndex, buttonType) {
         let buttonId = TodoGUIId.ITEM_CARD_ + itemIndex + buttonType;
         let button = document.getElementById(buttonId);
-        button.classList.add(TodoGUIClass.DISABLED);        
+        button.disabled = true;
+        button.classList.add(TodoGUIClass.DISABLED);       
     }
 
     /**
