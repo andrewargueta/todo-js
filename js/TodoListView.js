@@ -110,11 +110,18 @@ class TodoListView {
         buttonDeleteDiv.innerHTML = "<img src = './images/icons/RemoveItem.png' alt = '' />";
         
 
+<<<<<<< HEAD
         buttonUpDiv.addEventListener('click', event => event.stopPropagation());
         buttonDownDiv.addEventListener('click', event => event.stopPropagation());
         buttonDeleteDiv.addEventListener('click', event => event.stopPropagation());
 
         
+=======
+        this.setupCallback(buttonUpDiv, TodoHTML.ONCLICK, TodoCallback.PROCESS_MOVE_ITEM_UP, [listItemIndex]);
+        this.setupCallback(buttonDownDiv, TodoHTML.ONCLICK, TodoCallback.PROCESS_MOVE_ITEM_DOWN, [listItemIndex]);
+        this.setupCallback(buttonDeleteDiv, TodoHTML.ONCLICK, TodoCallback.PROCESS_DELETE_ITEM, [listItemIndex]);
+
+>>>>>>> cbe9a72fcbd5c41e83e3e2516843d6befea744f8
         buttonDiv.appendChild(buttonUpDiv);
         buttonDiv.appendChild(buttonDownDiv);
         buttonDiv.appendChild(buttonDeleteDiv);
