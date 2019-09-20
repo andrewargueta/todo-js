@@ -97,7 +97,6 @@ class TodoListView {
         
         
         let buttonDownDiv =  document.createElement(TodoHTML.BUTTON);
-        
         buttonDownDiv.setAttribute(TodoHTML.CLASS, TodoGUIClass.LIST_ITEM_CARD_DOWN);
         buttonDownDiv.setAttribute(TodoHTML.ID, TodoGUIId.ITEM_CARD_ + listItemIndex + TodoGUIId.DOWN);
         this.setupCallback(buttonDownDiv, TodoHTML.ONCLICK, TodoCallback.PROCESS_MOVE_ITEM_DOWN, itemArgs);
@@ -118,8 +117,6 @@ class TodoListView {
         buttonDiv.appendChild(buttonUpDiv);
         buttonDiv.appendChild(buttonDownDiv);
         buttonDiv.appendChild(buttonDeleteDiv);
-
-
 
 
         // THESE SPANS GO IN THE DETAILS DIV

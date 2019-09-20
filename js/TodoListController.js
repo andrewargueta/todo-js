@@ -246,26 +246,30 @@ class TodoListController {
 
         
     }
-    processMoveItemUp(listName, itemIndex){
+
+    processMoveItemUp(listName, itemIndex) {
+        let index = parseInt(itemIndex);
         let listBeingEdited = window.todo.model.loadList(listName);
-        let tempItem = listBeingEdited.items[itemIndex-1];
-        listBeingEdited.items[itemIndex-1] = listBeingEdited.items[itemIndex];
-        listBeingEdited.items[itemIndex] = tempItem;
+        let tempItem = listBeingEdited.items[index-1];
+        listBeingEdited.items[index-1] = listBeingEdited.items[index];
+        listBeingEdited.items[index] = tempItem;
         todo.view.loadItems(listBeingEdited);
 
     }
-    processMoveItemDown(listName, itemIndex){
-        let listBeingEdited = window.todo.model.loadList(listName);
+
+    processMoveItemDown(listName, itemIndex) {
         let index = parseInt(itemIndex);
+        let listBeingEdited = window.todo.model.loadList(listName);
         let tempItem = listBeingEdited.items[index];
         listBeingEdited.items[index] = listBeingEdited.items[index + 1];
         listBeingEdited.items[index + 1] = tempItem;
         todo.view.loadItems(listBeingEdited);
     }
 
-    processDeleteItem(listName, itemIndex){
+    processDeleteItem(listName, itemIndex) {
+        let index = parseInt(itemIndex);
         let listBeingEdited = window.todo.model.loadList(listName);
-        listBeingEdited.removeItem(listBeingEdited.getItemAtIndex(itemIndex));
+        listBeingEdited.removeItem(listBeingEdited.getItemAtIndex(index));
         todo.view.loadItems(listBeingEdited);
     }
 
