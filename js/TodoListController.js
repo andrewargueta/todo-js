@@ -246,7 +246,6 @@ class TodoListController {
 
         
     }
-<<<<<<< HEAD
     processMoveItemUp(listName, itemIndex){
         let listBeingEdited = window.todo.model.loadList(listName);
         let tempItem = listBeingEdited.items[itemIndex-1];
@@ -257,9 +256,10 @@ class TodoListController {
     }
     processMoveItemDown(listName, itemIndex){
         let listBeingEdited = window.todo.model.loadList(listName);
-        let tempItem = listBeingEdited.items[itemIndex+1];
-        listBeingEdited.items[itemIndex+1] = listBeingEdited.items[itemIndex];
-        listBeingEdited.items[itemIndex] = tempItem;
+        let index = parseInt(itemIndex);
+        let tempItem = listBeingEdited.items[index];
+        listBeingEdited.items[index] = listBeingEdited.items[index + 1];
+        listBeingEdited.items[index + 1] = tempItem;
         todo.view.loadItems(listBeingEdited);
     }
 
@@ -267,13 +267,6 @@ class TodoListController {
         let listBeingEdited = window.todo.model.loadList(listName);
         listBeingEdited.removeItem(listBeingEdited.getItemAtIndex(itemIndex));
         todo.view.loadItems(listBeingEdited);
-=======
-    processMoveItemUp(indexItem) {}
-    processMoveItemDown(indexItem) {}
-
-    processDeleteItem(indexItem) {
-        console.log(indexItem);
->>>>>>> cbe9a72fcbd5c41e83e3e2516843d6befea744f8
     }
 
 
