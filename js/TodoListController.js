@@ -83,7 +83,6 @@ class TodoListController {
      */
 
     processDeleteList(){
-       let dialog = document.getElementById(TodoGUIId.MODAL_YES_NO_DIALOG);
        window.todo.model.view.showDialog();
 
        let yesButton = document.getElementById(TodoGUIId.YES_BUTTON);
@@ -94,12 +93,16 @@ class TodoListController {
            window.todo.model.goHome();
            window.todo.model.view.hideDialog();
        }
-       noButton.onclick = function(){
-        window.todo.model.view.hideDialog();
-       }
+       noButton.addEventListener('click',function() {
+        var dialog = document.getElementById(TodoGUIId.MODAL_YES_NO_DIALOG);
+        dialog.classList.add('remove');
         
-        
-    }
+        setTimeout(function(){ 
+            window.todo.model.view.hideDialog();
+            dialog.classList.remove('remove');
+        }, 550);
+    })
+}
 
     /**
      * This function responds to when the user clicks on a link
@@ -131,26 +134,21 @@ class TodoListController {
             let assigned_to = document.getElementById(TodoGUIId.ITEM_ASSIGNED_TO_TEXTFIELD).value;
             let due_date = document.getElementById(TodoGUIId.ITEM_DUE_DATE_PICKER).value;
             let isCompleted = document.getElementById(TodoGUIId.ITEM_COMPLETED_CHECKBOX).checked;
-            if(description === "" || assigned_to === "" || due_date === ""){
-                alert("Invalid Inputs");
-            }
-            else{
-                let listBeingEdited = window.todo.model.loadList(listName);
-                let itemBeingEdited = listBeingEdited.getItemAtIndex(indexItem);
+            let listBeingEdited = window.todo.model.loadList(listName);
+            let itemBeingEdited = listBeingEdited.getItemAtIndex(indexItem);
 
-                itemBeingEdited.setDescription(description);
-                itemBeingEdited.setAssignedTo(assigned_to);
-                itemBeingEdited.setDueDate(due_date);
-                itemBeingEdited.setCompleted(isCompleted);
+            itemBeingEdited.setDescription(description);
+            itemBeingEdited.setAssignedTo(assigned_to);
+            itemBeingEdited.setDueDate(due_date);
+            itemBeingEdited.setCompleted(isCompleted);
             
-                // LOAD THE SELECTED LIST
-                window.todo.model.loadList(listName);
+            // LOAD THE SELECTED LIST
+            window.todo.model.loadList(listName);
 
-                // CHANGE THE SCREEN
-                window.todo.model.goList();
+            // CHANGE THE SCREEN
+            window.todo.model.goList();
             }
             
-        } 
 
         // CHANGE THE SCREEN
         window.todo.model.goEdit();
@@ -190,36 +188,33 @@ class TodoListController {
             let due_date = document.getElementById(TodoGUIId.ITEM_DUE_DATE_PICKER).value;
             let isCompleted = document.getElementById(TodoGUIId.ITEM_COMPLETED_CHECKBOX).checked;
             
-            if(description === "" || assigned_to === "" || due_date === ""){
-                alert("Invalid Inputs");
-            }
-
-            else{
-                newItem.setDescription(description);
-                newItem.setAssignedTo(assigned_to);
-                newItem.setDueDate(due_date);
-                newItem.setCompleted(isCompleted);
+           
+            newItem.setDescription(description);
+            newItem.setAssignedTo(assigned_to);
+            newItem.setDueDate(due_date);
+            newItem.setCompleted(isCompleted);
             
-                listBeingEdited.addItem(newItem);
-                // LOAD THE SELECTED LIST
-                window.todo.model.loadList(listName);
+            listBeingEdited.addItem(newItem);
+            // LOAD THE SELECTED LIST
+            window.todo.model.loadList(listName);
 
-                // CHANGE THE SCREEN
-                window.todo.model.goList();
+            // CHANGE THE SCREEN
+            window.todo.model.goList();
             }
             
         } 
 
-
-
-    }
 
     /**
      * This function responds to when the user clicks on the
      * todo logo to go back to the home screen.
      */
     processGoHome() {
-        window.todo.model.goHome();
+        let listBeingEdited =  window.todo.model.listToEdit;
+        if(listBeingEdited.getName() == '' || listBeingEdited.getOwner() == '')
+            alert('Fill out the name and owner inputs')
+        else
+            window.todo.model.goHome();
     }
 
 

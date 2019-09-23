@@ -129,7 +129,7 @@ body {
     
 }
 .visible{
-    visibility: visible !important;
+    
 }
 /* ITEM SCREEN CONTROLS */
 #item_heading {}
@@ -186,13 +186,28 @@ body {
     z-index: 2;
     animation-name: loading;
     animation-duration: .5s;
+    animation-delay: 0s, .5s;
   }
   .button_yes, .button_no{
       background: var(--swatch-primary);
       width: 50px;
       height: 65px;
   }
+.remove{
+    animation-name: hiding;
+    animation-duration: .5s;
+}
 @keyframes loading{
-      from{top: -500px}
-      to{top: 0}
+      from{top: -1500px}
+      to{top: -100px}
+      
   }
+@keyframes hiding{
+    from{top: 0px}
+    to{top: -1500px}
+}
+.animate {
+    animation-duration: 1s;
+    animation-name: hiding;
+  }
+  
