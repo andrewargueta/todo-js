@@ -182,11 +182,21 @@ body {
     background-color: var( --swatch-complement);
     align-content: center; 
     align-self: center;
-    margin: 455px 0 0 350px;
-    z-index: 2;
+    margin: 200px 0 0 500px;
+    z-index: 15;
     animation-name: loading;
     animation-duration: .5s;
     animation-delay: 0s, .5s;
+  }
+
+  #overlay {
+    position:fixed;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    display:none;
+    z-index: 10;
   }
   .button_yes, .button_no{
       background: var(--swatch-primary);

@@ -366,8 +366,11 @@ class TodoListView {
     hideDialog() {
         let dialog = document.getElementById(TodoGUIId.MODAL_YES_NO_DIALOG);
         dialog.classList.remove(TodoGUIClass.IS_VISIBLE);  
-        if(dialog.style.display == 'block')
-            dialog.style.display = '';    
+        let blocker = document.getElementById('overlay');
+        if(dialog.style.display == 'block'){
+            dialog.style.display = '';   
+            blocker.style.display = '';  
+        }
     }
 
     /**
@@ -375,9 +378,14 @@ class TodoListView {
      */
     showDialog() {
         let dialog = document.getElementById(TodoGUIId.MODAL_YES_NO_DIALOG);
-        dialog.classList.add(TodoGUIClass.IS_VISIBLE);          
-        if(dialog.style.display == 'none' || dialog.style.display == '')
-            dialog.style.display = 'block';    
+        let blocker = document.getElementById('overlay');
+        dialog.classList.add(TodoGUIClass.IS_VISIBLE);  
+                
+        if(dialog.style.display == 'none' || dialog.style.display == ''){
+            dialog.style.display = 'block';
+            blocker.style.display = 'block';
+            
+        }
         }
         
     
